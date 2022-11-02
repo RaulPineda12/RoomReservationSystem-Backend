@@ -1,15 +1,25 @@
 //este archivo hace la conexion a la base de datos llamada dbsalas
 const mysql = require('mysql');
 
-const conexion=mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'hola123',
-    port:3306,
-    database:'dbsalas'
-});
+var conexion = require("mssql");
 
-conexion.connect((err)=>{
+    // config for your database
+    var config = {
+        user: 'raul',
+        password: '@Tiburon1279',
+        server: 'roomreservationsystem-db-server2.database.windows.net', 
+        database: 'RoomReservationSystem-db' 
+    };
+/*
+const conexion=mysql.createConnection({
+    server: 'roomreservationsystem-db-server2.database.windows.net',
+    user: 'raul',
+    password: '@Tiburon1279',
+    database:'RoomReservationSystem-db'
+});
+*/
+
+conexion.connect(config,(err)=>{
     if(err){
         console.log("error en la conexion a la base de datos");
         console.log(err);
@@ -17,5 +27,32 @@ conexion.connect((err)=>{
         console.log("Conexion exitosa a la base de datos");
     }
 });
+
+
+/*
+var Connection = require('tedious').Connection;  
+var config = {  
+    server: 'tcp:roomreservationsystem-db-server2.database.windows.net',  //update me
+    authentication: {
+        type: 'default',
+        options: {
+            userName: 'raul', //update me
+            password: '@Tiburon1279'  //update me
+        }
+    },
+    options: {
+        // If you are on Microsoft Azure, you need encryption:
+        encrypt: true,
+        database: 'RoomReservationSystem-db'  //update me
+    }
+};  
+var conexion = new Connection(config);  
+conexion.on('connect', function(err) {  
+    // If no error, then good to proceed.
+    console.log("Connected");  
+});
+
+conexion.connect();
+*/
 
 module.exports=  conexion;
