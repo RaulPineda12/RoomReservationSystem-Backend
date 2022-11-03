@@ -24,6 +24,6 @@ app.listen(app.get('port'),(err)=>{
     if(err){
         console.log("error al iniciar el servidor")
     }else{
-        console.log("servidor corriendo en el puerto: "+port)
+        console.log("servidor corriendo en el puerto: "+port);
     }
 })
