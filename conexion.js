@@ -1,5 +1,5 @@
 //este archivo hace la conexion a la base de datos llamada dbsalas
-const mysql = require('mysql');
+//const mysql = require('mysql');
 
 var conexion = require("mssql");
 
