@@ -14,6 +14,11 @@ router.get('/',async (req,res)=>{
     })
 })
 
+//prueba
+router.get('/prueba',async (req,res)=>{
+    res.send("Server working");
+})
+
 //agregar sala
 router.get('/sala',async (req,res)=>{
     let sql=`insert into salas(hrinicio,hrfinal,estado) VALUES('','','libre') `;
