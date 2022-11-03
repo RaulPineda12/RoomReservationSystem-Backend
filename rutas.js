@@ -5,7 +5,7 @@ const conexion= require('./conexion');
 //Obtener todas las salas
 router.get('/',async (req,res)=>{
     let sql='SELECT * FROM salas';
-    await conexion.query(sql,(err,rows, fields)=>{
+     await conexion.query(sql,(err,rows, fields)=>{
         if(err){
             throw err;
         }else{        
@@ -15,14 +15,14 @@ router.get('/',async (req,res)=>{
 })
 
 //prueba
-router.get('/prueba',async (req,res)=>{
+router.get('/prueba', (req,res)=>{
     res.send("Server working");
 })
 
 //agregar sala
-router.get('/sala',async (req,res)=>{
+router.get('/sala', (req,res)=>{
     let sql=`insert into salas(hrinicio,hrfinal,estado) VALUES('','','libre') `;
-    await conexion.query(sql, (err,rows, fields)=>{
+     conexion.query(sql, (err,rows, fields)=>{
         if(err){
             throw err;
         }else{
@@ -32,10 +32,10 @@ router.get('/sala',async (req,res)=>{
 })
 
 //Para elminiar una sala
-router.delete('/eliminar/:id',async (req,res)=>{
+router.delete('/eliminar/:id', (req,res)=>{
     const {id}= req.params
     let sql=`DELETE FROM salas WHERE id='${id}'`;
-    await conexion.query(sql, (err,rows, fields)=>{
+     conexion.query(sql, (err,rows, fields)=>{
         if(err){
             throw err;
         }else{
@@ -45,7 +45,7 @@ router.delete('/eliminar/:id',async (req,res)=>{
 })
 
 //Para actualizar una Sala
-router.put('/actualizar/:idsala',async (req,res)=>{
+router.put('/actualizar/:idsala', (req,res)=>{
     const {idsala}= req.params;
     const {hrinicio,hrfinal}= req.body;
     
@@ -54,7 +54,7 @@ router.put('/actualizar/:idsala',async (req,res)=>{
                 hrfinal='${hrfinal}',
                 estado='reservada'
                 where id='${idsala}'`
-    await conexion.query(sql, (err,rows, fields)=>{
+     conexion.query(sql, (err,rows, fields)=>{
         if(err){
             throw err;
         }else{
@@ -64,7 +64,7 @@ router.put('/actualizar/:idsala',async (req,res)=>{
 })
 
 //ruta para liberar una Sala
-router.put('/liberar/:idsala',async (req,res)=>{
+router.put('/liberar/:idsala', (req,res)=>{
 
     const {idsala}= req.params;
     const {a1,a2}= req.body;
@@ -74,7 +74,7 @@ router.put('/liberar/:idsala',async (req,res)=>{
                 hrfinal='${a2}',
                 estado='libre'
                 where id='${idsala}'`
-     await conexion.query(sql, (err,rows, fields)=>{
+      conexion.query(sql, (err,rows, fields)=>{
          if(err){
              throw err;
          }else{
